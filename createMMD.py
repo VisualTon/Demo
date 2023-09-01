@@ -1,5 +1,4 @@
-import sys
-import os
+import subprocess
 
 # time = "2023/8/25 16:18:20"
 # status = "Success"
@@ -21,8 +20,10 @@ flowchart LR
     return mermaid_code
 
 
-def mmd_to_png(mermaid_code):
+async def mmd_to_png(mermaid_code):
     output_path = "si8a1.mmd"
     with open(output_path, "w") as f:
         f.write(mermaid_code)
-    os.system(f'cmd /c "mmdc -i {output_path} -o out.png"')
+    print("waiting for generate flow chart...")
+    process = subprocess.Popen(f"mmdc -i {output_path} -o out.png", shell=True)
+    process.wait()

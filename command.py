@@ -1,7 +1,6 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 from createMMD import *
-import time as t
 
 img_path = r"X:\Vscode\TelegramBot\test.jpg"
 
@@ -22,8 +21,5 @@ async def swear_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def pic_commnad(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    mmd_to_png("test", "si8a1.mmd")
-
-    t.sleep(1)
-
+    await mmd_to_png("test", "si8a1.mmd")
     await update.message.reply_photo(photo=open("out.png", "rb"), caption="这是你要的图片！")
