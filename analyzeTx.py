@@ -45,6 +45,7 @@ def process_transaction(data):
         amount = int(data["in_msg"]["decoded_body"].get("amount", 0)) // 10**9
         asset = "Jetton"
     else:
+        print(f"the decoded_op_name is {decoded_op_name}, can't analyze it")
         return
 
     status = "Success" if data["success"] else "Failure"
@@ -71,6 +72,7 @@ def get_tx_info(txid: str):
         out_msgs = data.get("out_msgs", [])
 
         if out_msgs:
+            print("get out_msgs")
             sender_address = data["account"]["address"]
             sender_address_readable = get_readable_address(sender_address)
 
@@ -99,6 +101,7 @@ def get_tx_info(txid: str):
                 asset,
             )
         else:
+            print("doesn't get out_msgs in get_tx_info()")
             return process_transaction(data)
     else:
         print("Request failed with status code:", response.status_code)
