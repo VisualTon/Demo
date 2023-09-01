@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import Updater, filters, ContextTypes
 from createMMD import *
-from VisualTon import get_tx_info
+from analyzeTx import get_tx_info
 
 
 def tx_to_graph(tx_id):
